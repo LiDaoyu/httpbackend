@@ -31,4 +31,10 @@ public class DictController {
 		List<Dict> list = dictService.getDict(code);
 		return new Result(HttpStatus.OK.value(), "success", list);
 	}
+
+	@GetMapping("/getRandomCurrentLocation")
+	public Result getRandomCurrentLocation() {
+		Dict dict = dictService.getRandomCurrentLocation();
+		return new Result(HttpStatus.OK.value(), "success", dict);
+	}
 }

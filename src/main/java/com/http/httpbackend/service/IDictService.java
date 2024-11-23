@@ -16,4 +16,6 @@ import java.util.List;
 public interface IDictService extends IService<Dict> {
 
 	List<Dict> getDict(String code);
+
+	Dict getRandomCurrentLocation();
 }

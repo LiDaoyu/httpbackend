@@ -1,5 +1,6 @@
 package com.http.httpbackend.service;
 
+import com.http.httpbackend.DTO.UserRegisterDTO;
 import com.http.httpbackend.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,5 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
-	Boolean register(User user);
+	Boolean register(UserRegisterDTO userRegisterDTO);
 }

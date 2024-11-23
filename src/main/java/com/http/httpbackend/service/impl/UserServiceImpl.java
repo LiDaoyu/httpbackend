@@ -1,6 +1,7 @@
 package com.http.httpbackend.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.http.httpbackend.DTO.UserRegisterDTO;
 import com.http.httpbackend.common.DictCode;
 import com.http.httpbackend.entity.User;
 import com.http.httpbackend.mapper.UserMapper;
@@ -19,16 +20,20 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
 	@Override
-	public Boolean register(User user) {
-		DictCode.set(user::getHometown, user::setHometown);
-		DictCode.set(user::getCurrentResidence, user::setCurrentResidence);
-		DictCode.set(user::getEducation, user::setEducation);
-		DictCode.set(user::getFrequency, user::setFrequency);
-		DictCode.set(user::getIpAttitude, user::setIpAttitude);
-		DictCode.set(user::getIpArgument, user::setIpArgument);
-		DictCode.set(user::getPlatform, user::setPlatform);
-		DictCode.set(user::getOnlineTime, user::setOnlineTime);
-		DictCode.set(user::getTopic, user::setTopic);
+	public Boolean register(UserRegisterDTO userRegisterDTO) {
+		User user = new User();
+		user.setName(userRegisterDTO.getName());
+		user.setEmail(userRegisterDTO.getEmail());
+		user.setAge(Integer.valueOf(userRegisterDTO.getAge() == null ? "0" : userRegisterDTO.getAge()));
+		user.setHometown(DictCode.code2int(userRegisterDTO.getHometown()));
+		user.setCurrentResidence(DictCode.code2int(userRegisterDTO.getCurrentResidence()));
+		user.setEducation(DictCode.code2int(userRegisterDTO.getEducation()));
+		user.setFrequency(DictCode.code2int(userRegisterDTO.getFrequency()));
+		user.setIpAttitude(DictCode.code2int(userRegisterDTO.getIpAttitude()));
+		user.setIpArgument(DictCode.code2int(userRegisterDTO.getIpArgument()));
+		user.setPlatform(DictCode.code2int(userRegisterDTO.getPlatforms()));
+		user.setOnlineTime(DictCode.code2int(userRegisterDTO.getOnlineTime()));
+		user.setTopic(DictCode.code2int(userRegisterDTO.getTopics()));
 		return this.save(user);
 	}
 }

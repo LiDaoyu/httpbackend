@@ -8,6 +8,7 @@ import com.http.httpbackend.service.IDictService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>
@@ -25,5 +26,15 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
 		LambdaQueryWrapper<Dict> lambdaQueryWrapper = new LambdaQueryWrapper<>();
 		lambdaQueryWrapper.like(Dict::getCode, code);
 		return this.list(lambdaQueryWrapper);
+	}
+
+	@Override
+	public Dict getRandomCurrentLocation() {
+		LambdaQueryWrapper<Dict> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+		lambdaQueryWrapper.like(Dict::getCode, "user.hometown");
+		List<Dict> dictList = this.list(lambdaQueryWrapper);
+		Random random = new Random();
+		int randomIndex = random.nextInt(dictList.size());
+		return dictList.get(randomIndex);
 	}
 }
