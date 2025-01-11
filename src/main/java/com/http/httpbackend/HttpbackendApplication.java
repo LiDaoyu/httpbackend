@@ -18,20 +18,20 @@ public class HttpbackendApplication {
 		SpringApplication.run(HttpbackendApplication.class, args);
 	}
 
-	/**
-	 * 项目启动输出访问地址
-	 */
-	@Bean
-	public ApplicationRunner applicationRunner(WebServerApplicationContext context) {
-		return (ApplicationArguments args) -> {
-			try {
-				Console.log("===============项目启动成功 start===============");
-				List<String> ipAddressList = IpAddressUtils.getIpAddressOfStartUp(context);
-				ipAddressList.forEach(Console::log);
-				Console.log("================项目启动成功 end================");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		};
-	}
+//	/**
+//	 * 项目启动输出访问地址
+//	 */
+//	@Bean
+//	public ApplicationRunner applicationRunner(WebServerApplicationContext context) {
+//		return (ApplicationArguments args) -> {
+//			try {
+//				Console.log("===============项目启动成功 start===============");
+//				List<String> ipAddressList = IpAddressUtils.getIpAddressOfStartUp(context);
+//				ipAddressList.forEach(Console::log);
+//				Console.log("================项目启动成功 end================");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		};
+//	}
 }
